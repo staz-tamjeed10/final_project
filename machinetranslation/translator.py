@@ -40,11 +40,11 @@ def initialize_speech_to_text():
     speech_to_text.set_service_url(urlforspeech)
     return speech_to_text
 
-def speechToText(audio_path):
+def speechToText(audio_file):
     speech_to_text = initialize_speech_to_text()
 
-    with open(audio_path, 'rb') as audio_file:
-        response = speech_to_text.recognize(audio=audio_file, content_type='audio/wav')
-        recognized_text = response.get_result()['results'][0]['alternatives'][0]['transcript']
+    response = speech_to_text.recognize(audio=audio_file, content_type='audio/mp3')
+    recognized_text = response.get_result()['results'][0]['alternatives'][0]['transcript']
 
     return recognized_text
+
