@@ -18,6 +18,24 @@ def frenchToEnglish():
     englishText = translator.frenchToEnglish(textToTranslate)
     return englishText
 
+@app.route("/englishToUrdu")
+def englishToUrdu():
+    textToTranslate = request.args.get('textToTranslate')
+    urduText = translator.englishToUrdu(textToTranslate)
+    return urduText
+
+@app.route("/urduToEnglish")
+def urduToEnglish():
+    textToTranslate = request.args.get('textToTranslate')
+    englishText = translator.urduToEnglish(textToTranslate)
+    return englishText
+
+@app.route("/speechToText", methods=["POST"])
+def speech_to_text():
+    audio_file = request.files['audio']
+    recognized_text = translator.speechToText(audio_file)
+    return recognized_text
+
 @app.route("/")
 def renderIndexPage():
     return render_template("index.html")
